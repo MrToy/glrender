@@ -96,11 +96,11 @@ func (render *Render) Run() {
 		gl.UseProgram(render.program)
 		//更新相机
 		render.Camera.Update()
-		render.Camera.Updated()
+		render.Camera.updated()
 		//更新组件
 		for _, component := range render.Components {
 			component.Update()
-			component.Updated()
+			component.updated()
 			gl.BindVertexArray(component.getVao())
 			gl.DrawArrays(gl.TRIANGLES, 0, component.size())
 		}

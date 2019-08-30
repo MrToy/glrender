@@ -7,8 +7,8 @@ import (
 
 type Component interface {
 	Update()
-	Updated()
-	GetModel() mgl32.Mat4
+	updated()
+	getModel() mgl32.Mat4
 	size() int32
 	getVao() uint32
 }
@@ -50,7 +50,7 @@ func (component *BaseComponent) Update() {
 
 }
 
-func (component *BaseComponent) Updated() {
+func (component *BaseComponent) updated() {
 	modelUniform := gl.GetUniformLocation(component.Render.program, gl.Str("model\x00"))
 	gl.UniformMatrix4fv(modelUniform, 1, false, &component.Model[0])
 }
@@ -59,7 +59,7 @@ func (component *BaseComponent) size() int32 {
 	return int32(len(component.Vertices) / 5 * 3)
 }
 
-func (component *BaseComponent) GetModel() mgl32.Mat4 {
+func (component *BaseComponent) getModel() mgl32.Mat4 {
 	return component.Model
 }
 

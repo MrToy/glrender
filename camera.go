@@ -7,7 +7,7 @@ import (
 
 type Camera interface {
 	Update()
-	Updated()
+	updated()
 }
 
 type BaseCamera struct {
@@ -29,7 +29,7 @@ func (camera *BaseCamera) Update() {
 
 }
 
-func (camera *BaseCamera) Updated() {
+func (camera *BaseCamera) updated() {
 	cameraUniform := gl.GetUniformLocation(camera.Render.program, gl.Str("camera\x00"))
 	gl.UniformMatrix4fv(cameraUniform, 1, false, &camera.Model[0])
 	projectionUniform := gl.GetUniformLocation(camera.Render.program, gl.Str("projection\x00"))
